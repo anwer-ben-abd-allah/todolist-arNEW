@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 // Représentation des données 
 
@@ -23,6 +25,8 @@ public class Task {
 	
 	private boolean finished;
 	
+	
+	 @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime creationDate;
 	
 	
