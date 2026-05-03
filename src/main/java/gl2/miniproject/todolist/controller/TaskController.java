@@ -55,9 +55,16 @@ public class TaskController {
 		taskService.deleteById(id);
 	}
 	
-	@PatchMapping
-	public Task modifyTask(@RequestBody Task task) {
-		return taskService.modify(task);
+	@PatchMapping("/{id}")
+	public Task modifyTask(@PathVariable Long id,@RequestBody Task in_task) {
+		Task real_task = taskService.getTaskById(id).orElse(null);
+		if (real_task == null) 
+			return null;
+		if (in_task.getName()!= null) 
+			real_task.setName(in_task.getName());
+		if (in_task.isFinished() != false)
+			real_task.setFinished(in_task.isFinished());
+		return real_task;
 	}
 
 }

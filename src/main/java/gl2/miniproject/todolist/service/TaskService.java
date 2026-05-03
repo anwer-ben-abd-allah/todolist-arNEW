@@ -1,6 +1,7 @@
 package gl2.miniproject.todolist.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.management.RuntimeErrorException;
 
@@ -15,29 +16,30 @@ import gl2.miniproject.todolist.repository.UserRepository;
 @Service
 public class TaskService {
 
-	
-	
-	@Autowired //donner une instance de cette classe
+	@Autowired // donner une instance de cette classe
 	private TaskRepository taskRepository;
 
+	// 1. afficher toutes les taches:
 
-
-	//1. afficher toutes les taches:
-	
-	public List<Task> getAllTasks(){
+	public List<Task> getAllTasks() {
 		return taskRepository.findAll();
 	}
 
-	//2. create new task:
-	
+	// 2. create new task:
+
 	public Task createTask(Task task) {
-		
+
 		return taskRepository.save(task);
 	}
+
 	public void deleteById(Long id) {
 		taskRepository.deleteById(id);
 	}
+
 	public Task modify(Task task) {
 		return taskRepository.save(task);
+	}
+	public Optional<Task> getTaskById(Long id) {
+		return taskRepository.findById(id);
 	}
 }
