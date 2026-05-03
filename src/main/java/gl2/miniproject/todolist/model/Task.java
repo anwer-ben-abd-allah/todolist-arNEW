@@ -86,10 +86,5 @@ public class Task {
 		this.creationDate = creationDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", finished=" + finished + ", creationDate=" + creationDate
-				+ ", user=" + user + "]";
-	}
 
 }

@@ -40,7 +40,6 @@ public class TaskController {
 		User user = userService.getUserById(task.getId()).orElseThrow(
 				() -> new RuntimeException("no user found"));
 		
-		System.out.println(user);
 		Task newTask = new Task();
 		newTask.setUser(user);
 		newTask.setName(task.getName());
