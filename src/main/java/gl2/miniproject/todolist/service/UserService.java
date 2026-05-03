@@ -20,7 +20,7 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 	public User addUser(User user) {
-		if (userRepo.existByEmail(user))
+		if (userRepo.existsByEmail(user.getEmail()))
 			return null;
 		return userRepo.save(user);
 	}
