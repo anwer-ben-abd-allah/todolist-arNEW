@@ -1,38 +1,46 @@
 package gl2.miniproject.todolist.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 // Représentation des données 
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "task_id")
 	private Long id;
 
 	private String name;
 
 	private boolean finished;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	
 	private LocalDateTime creationDate;
 	@ManyToOne
+	@JoinColumn(name = "user_id")
 	@JsonIgnoreProperties("tasks")
 	private User user;
 	// constructeurs:
 
 	public Task() {
+		this.finished = false;
 		this.creationDate = LocalDateTime.now();
+
 	}
 
 	public Task(String name, User user) {
@@ -42,7 +50,6 @@ public class Task {
 		this.creationDate = LocalDateTime.now();
 	}
 
-	// getters:
 	public Long getId() {
 		return id;
 	}
@@ -57,11 +64,6 @@ public class Task {
 
 	public LocalDateTime getCreationDate() {
 		return creationDate;
-	}
-
-	// setters:
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setName(String name) {
@@ -82,6 +84,12 @@ public class Task {
 
 	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Task [id=" + id + ", name=" + name + ", finished=" + finished + ", creationDate=" + creationDate
+				+ ", user=" + user + "]";
 	}
 
 }

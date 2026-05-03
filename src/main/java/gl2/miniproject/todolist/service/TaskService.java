@@ -1,12 +1,16 @@
 package gl2.miniproject.todolist.service;
 
+import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import gl2.miniproject.todolist.model.Task;
+import gl2.miniproject.todolist.model.User;
 import gl2.miniproject.todolist.repository.TaskRepository;
+import gl2.miniproject.todolist.repository.UserRepository;
 
 @Service
 public class TaskService {
@@ -27,6 +31,7 @@ public class TaskService {
 	//2. create new task:
 	
 	public Task createTask(Task task) {
+		
 		return taskRepository.save(task);
 	}
 }
