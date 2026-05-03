@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import gl2.miniproject.todolist.DTO.LoginDTO;
 import gl2.miniproject.todolist.model.User;
 import gl2.miniproject.todolist.service.UserService;
 
@@ -33,9 +34,9 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody User user) {
+	public ResponseEntity<?> login(@RequestBody LoginDTO login ) {
 		HashMap<String, Object> map = new HashMap<>();
-		if (userService.goodCredentials(user.getEmail(), user.getPwd())) {
+		if (userService.goodCredentials(login.getEmail(), login.getPwd())) {
 			map.put("status", HttpStatus.OK.value());
 			map.put("message", "Authentication successful");
 			return ResponseEntity.ok(map);
