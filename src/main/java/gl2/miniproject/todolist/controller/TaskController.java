@@ -66,5 +66,17 @@ public class TaskController {
 			real_task.setFinished(in_task.isFinished());
 		return real_task;
 	}
+	
+	//modify name
+	@PatchMapping("/{id}/name")
+	public Task modifyName(@PathVariable Long id, @RequestBody String newName) {
+	    return taskService.modifyName(id, newName);
+	}
+
+	//modify status
+	@PatchMapping("/{id}/status")
+	public Task modifyStatus(@PathVariable Long id) {
+	    return taskService.modifyStatus(id);
+	}
 
 }
